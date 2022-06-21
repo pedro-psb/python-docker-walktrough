@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - 8000:5000
+    volumes:
+      - ./:/app
+    environment:
+      - FLASK_ENV=development
+  
+  mysqldb:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql
+
+volumes:
+  mysql_data:
+  mysql_config:
